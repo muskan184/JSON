@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Json</title>
+  </head>
+  <body>
+    <script>
+      //   var jsonObject = {
+      //     name: "muskan",
+      //     lastname: "dubey",
+      //     age: 19,
+      //     proffesion: "webdevlopment",
+      //   };
+      //   // document.write(jsonObject.name);
+
+      //   //   modify value
+      //   jsonObject.name = "me";
+
+      //   //    add new key value pair
+      //   jsonObject.middlename = "arun";
+
+      //   //   delete record
+      //   delete jsonObject.middlename;
+
+      //   // show all key
+      //   for (showalldata in jsonObject) {
+      //     document.write("\n");
+      //     // document.write(showalldata + "<br>");
+      //     // // show value
+      //     // document.write(jsonObject[showalldata] + "<br>");
+      //     // for both key and value
+      //     document.write(showalldata + " : " + jsonObject[showalldata] + "<br>");
+      //   }
+
+      //   object array
+      //   var jsonObject = {
+      //     array: ["muskan", "arun", "dubey"],
+      //   };
+      //   document.write(jsonObject.array);
+
+      //   // array object
+      //   var jsonObject = {
+      //     fifa: [
+      //       {
+      //         countryname: "india",
+      //         bestPlayer: "virat",
+      //       },
+      //       {
+      //         countryname: "brazil",
+      //       },
+      //       {
+      //         countryname: "portuagal",
+      //       },
+      //     ],
+      //   };
+      //   //   document.write(jsonObject.fifa[0].countryname);
+      //   //   document.write(jsonObject.fifa[0].bestPlayer);
+
+      //   //   using for loop
+
+      //   for (x in jsonObject.fifa) {
+      //     for (inner_x in jsonObject.fifa[x])
+      //       document.write(
+      //         inner_x + " : " + jsonObject.fifa[x][inner_x] + "<br>"
+      //       );
+      //   }
+
+      // send json one file to other file
+
+      //   var sendData = {
+      //     name: "muskan",
+      //     lastname: "dubey",
+      //   };
+      //   var chageData = JSON.stringify(sendData); //convery into string
+      //   var jsonObject = JSON.parse(chageData); //onvert into onjrct
+      //   document.write(jsonObject.name);
+      //   window.location = "send.html?values=" + chageData;
+
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+          console.log(xhttp.responseText);
+          var response = JSON.parse(xhttp.responseText);
+          console.log(response.employee);
+
+          var employees = response.employee;
+
+          var shoeData = "";
+          for (var i = 0; i < employees.length; i++) {
+            shoeData = employees[i].name;
+            document.write(shoeData);
+          }
+        }
+      };
+      xhttp.open("GET", "index.json", true);
+      xhttp.send();
+    </script>
+  </body>
+</html>
